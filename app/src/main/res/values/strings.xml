@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">MyMedicApp</string>
+    <string name="string_title_login">Welcome\n to Medical Office</string>
+    <string name="string_skip">Skip</string>
+    <string name="string_you_do_not_have_account">You do not have an account?</string>
+    <string name="string_you_do_not_have_account_sing_up"> <font color='#3E90CC'>Sing Up</font> </string>
+    <string name="string_log_in">Log In</string>
+    <string name="string_user_hint">Email</string>
+    <string name="string_password_hint">Password</string>
 </resources>
