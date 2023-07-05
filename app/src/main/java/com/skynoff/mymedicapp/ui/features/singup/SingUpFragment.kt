@@ -1,18 +1,20 @@
 package com.skynoff.mymedicapp.ui.features.singup
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.skynoff.mymedicapp.R
+import androidx.fragment.app.Fragment
+import com.skynoff.mymedicapp.databinding.FragmentSingUpBinding
 
 class SingUpFragment : Fragment() {
 
+    private lateinit var binding:FragmentSingUpBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_sing_up, container, false)
+    ): View {
+        binding = FragmentSingUpBinding.inflate(layoutInflater)
+        return binding.root
     }
 }

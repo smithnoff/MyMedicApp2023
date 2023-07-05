@@ -7,4 +7,8 @@
     <string name="string_log_in">Log In</string>
     <string name="string_user_hint">Email</string>
     <string name="string_password_hint">Password</string>
+    <string name="string_title_sing_up">Hello! Let\'s create your account</string>
+    <string name="string_name_hint">Name</string>
+    <string name="string_phone_hint">Phone</string>
+    <string name="string_confirm_password_hint">Confirm Password</string>
 </resources>
