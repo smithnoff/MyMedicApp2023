@@ -191,7 +191,8 @@
             android:textStyle="bold"
             android:clickable="true"
             android:textColor="@color/backgraoud_secundary"
-            android:layout_gravity="start"/>
+            android:layout_gravity="start"
+            />
 
 
     </LinearLayout>
