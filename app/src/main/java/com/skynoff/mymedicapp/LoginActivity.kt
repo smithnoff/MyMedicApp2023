@@ -15,7 +15,7 @@ import retrofit2.create
 
 class LoginActivity : AppCompatActivity() {
 
-    lateinit var retrofit : Retrofit
+    lateinit var retrofit: Retrofit
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -25,33 +25,52 @@ class LoginActivity : AppCompatActivity() {
             .build()
 
         val etEmail = findViewById<TextInputEditText>(R.id.etUserEmail)
+        val etpass = findViewById<TextInputEditText>(R.id.etUserPass)
+
         val btIngresar = findViewById<Button>(R.id.button)
         btIngresar.setOnClickListener {
-            validarUsuario(etEmail.text.toString().lowercase())
+            validarUsuario(etEmail.text.toString().lowercase(), etpass.text.toString())
         }
 
     }
 
-    private fun validarUsuario(email: String) {
+    private fun validarUsuario(email: String, password: String) {
 
         val api = retrofit.create<TypicodeApi>()
 
-        api.getUsers().enqueue(object: Callback<List<User>>{
+        api.getUsers().enqueue(object : Callback<List<User>> {
             override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
-                if (response.isSuccessful){
-                    val usuariosRegistados = response.body()?.map { it.email.lowercase() }
-                    usuariosRegistados?.let {
-                        if(it.contains(email))
-                            startActivity(Intent(this@LoginActivity,MainActivity::class.java))
-                        else
-                            Toast.makeText(this@LoginActivity, "El usuario no esta registrado", Toast.LENGTH_SHORT).show()
-
+                if (response.isSuccessful) {
+                    val usuarios = response.body() ?: emptyList()
+                    val userEncontrado = usuarios.any { user ->
+                        user.email.lowercase() == email && user.id == password
                     }
-
-                }else{
-                    Toast.makeText(this@LoginActivity, "Error ${response.code()}", Toast.LENGTH_SHORT).show()
+                    if (userEncontrado) {
+                        startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                    } else {
+                        if (usuarios.any { user -> user.email.lowercase() == email }) {
+                            Toast.makeText(
+                                this@LoginActivity,
+                                R.string.clave_incorrecta,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        } else {
+                            Toast.makeText(
+                                this@LoginActivity,
+                                R.string.correo_no_encontrado,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                } else {
+                    Toast.makeText(
+                        this@LoginActivity,
+                        "Error ${response.code()}",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
+
             override fun onFailure(call: Call<List<User>>, t: Throwable) {
 
             }
