@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MyMedicApp</string>
+    <string name="label_password">Contraseña</string>
 </resources>

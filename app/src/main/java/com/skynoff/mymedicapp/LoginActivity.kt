@@ -26,27 +26,65 @@ class LoginActivity : AppCompatActivity() {
 
         val etEmail = findViewById<TextInputEditText>(R.id.etUserEmail)
         val btIngresar = findViewById<Button>(R.id.button)
+        val etPassword = findViewById<TextInputEditText>(R.id.etUserID)
+
         btIngresar.setOnClickListener {
-            validarUsuario(etEmail.text.toString().lowercase())
+            validarUsuario(etEmail.text.toString().lowercase(), etPassword.text.toString())
         }
 
     }
+    fun obtenerUsuario(email: String, password: String) {
 
-    private fun validarUsuario(email: String) {
+        val api = retrofit.create<TypicodeApi>()
+        api.getUser(password).enqueue(object:Callback<User>{
+            override fun onResponse(call: Call<User>, response: Response<User>) {
+                if(response.isSuccessful){
+                   if (email==response.body()?.email?.lowercase()) {
+                        startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                    }else
+                        Toast.makeText(this@LoginActivity, "El usuario no esta registrado", Toast.LENGTH_SHORT).show()
+
+
+
+                }
+            }
+
+            override fun onFailure(call: Call<User>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
+
+    }
+    private fun validarUsuario(email: String, password: String) {
 
         val api = retrofit.create<TypicodeApi>()
 
         api.getUsers().enqueue(object: Callback<List<User>>{
             override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
                 if (response.isSuccessful){
-                    val usuariosRegistados = response.body()?.map { it.email.lowercase() }
+                    response.body()?.let {listaDeUsuarios ->
+                        var isUserFinded = false
+                    listaDeUsuarios.forEach {
+                        if(it.email==email && it.id.toString()==password){
+                            isUserFinded = true
+                            return@forEach
+                        }
+
+                    }
+                      if (isUserFinded)
+                          startActivity(Intent(this@LoginActivity,MainActivity::class.java))
+                      else
+                          Toast.makeText(this@LoginActivity, "El usuario no esta registrado", Toast.LENGTH_SHORT).show()
+                    }
+       /*             val usuariosRegistados = response.body()?.map { it.email.lowercase()}
                     usuariosRegistados?.let {
-                        if(it.contains(email))
+                        if((it.contains(email)))
                             startActivity(Intent(this@LoginActivity,MainActivity::class.java))
                         else
                             Toast.makeText(this@LoginActivity, "El usuario no esta registrado", Toast.LENGTH_SHORT).show()
 
-                    }
+                    }*/
 
                 }else{
                     Toast.makeText(this@LoginActivity, "Error ${response.code()}", Toast.LENGTH_SHORT).show()
