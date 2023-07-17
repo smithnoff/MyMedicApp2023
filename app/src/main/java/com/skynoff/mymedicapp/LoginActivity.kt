@@ -33,29 +33,6 @@ class LoginActivity : AppCompatActivity() {
         }
 
     }
-    fun obtenerUsuario(email: String, password: String) {
-
-        val api = retrofit.create<TypicodeApi>()
-        api.getUser(password).enqueue(object:Callback<User>{
-            override fun onResponse(call: Call<User>, response: Response<User>) {
-                if(response.isSuccessful){
-                   if (email==response.body()?.email?.lowercase()) {
-                        startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-                    }else
-                        Toast.makeText(this@LoginActivity, "El usuario no esta registrado", Toast.LENGTH_SHORT).show()
-
-
-
-                }
-            }
-
-            override fun onFailure(call: Call<User>, t: Throwable) {
-                TODO("Not yet implemented")
-            }
-
-        })
-
-    }
     private fun validarUsuario(email: String, password: String) {
 
         val api = retrofit.create<TypicodeApi>()
@@ -66,7 +43,7 @@ class LoginActivity : AppCompatActivity() {
                     response.body()?.let {listaDeUsuarios ->
                         var isUserFinded = false
                     listaDeUsuarios.forEach {
-                        if(it.email==email && it.id.toString()==password){
+                        if(it.email.lowercase()==email && it.id.toString()==password){
                             isUserFinded = true
                             return@forEach
                         }
