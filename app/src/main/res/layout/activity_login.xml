@@ -13,9 +13,9 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="58dp"
         android:layout_marginEnd="16dp"
-        android:text="Bienvenido a MedicApp"
+        android:text="Bienvenido(a) \n Consultorio Medico"
         android:textAlignment="center"
-        android:textSize="22dp"
+        android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,7 +23,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/editTextTextEmailAddress"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="58dp"
@@ -36,9 +36,11 @@
             android:id="@+id/etUserEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableStart="@drawable/correoicon"
+            android:textColorHint="@color/gray"
             android:ems="10"
             android:inputType="textEmailAddress"
-            android:hint="Email"/>
+            android:hint=" Correo electrónico"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -52,11 +54,14 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" >
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etUserID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
+            android:drawableStart="@drawable/lockimage"
+            android:drawableEnd="@drawable/baseline_visibility_off_24"
             android:ems="10"
-            android:hint="Contraseña"/>
+            android:hint= "@string/label_password"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -64,7 +69,9 @@
         android:id="@+id/button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/ovalo"
         android:text="Ingresar"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="@+id/editTextTextPassword"
         app:layout_constraintStart_toStartOf="@+id/editTextTextPassword"

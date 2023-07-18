@@ -26,27 +26,42 @@ class LoginActivity : AppCompatActivity() {
 
         val etEmail = findViewById<TextInputEditText>(R.id.etUserEmail)
         val btIngresar = findViewById<Button>(R.id.button)
+        val etPassword = findViewById<TextInputEditText>(R.id.etUserID)
+
         btIngresar.setOnClickListener {
-            validarUsuario(etEmail.text.toString().lowercase())
+            validarUsuario(etEmail.text.toString().lowercase(), etPassword.text.toString())
         }
 
     }
-
-    private fun validarUsuario(email: String) {
+    private fun validarUsuario(email: String, password: String) {
 
         val api = retrofit.create<TypicodeApi>()
 
         api.getUsers().enqueue(object: Callback<List<User>>{
             override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
                 if (response.isSuccessful){
-                    val usuariosRegistados = response.body()?.map { it.email.lowercase() }
+                    response.body()?.let {listaDeUsuarios ->
+                        var isUserFinded = false
+                    listaDeUsuarios.forEach {
+                        if(it.email.lowercase()==email && it.id.toString()==password){
+                            isUserFinded = true
+                            return@forEach
+                        }
+
+                    }
+                      if (isUserFinded)
+                          startActivity(Intent(this@LoginActivity,MainActivity::class.java))
+                      else
+                          Toast.makeText(this@LoginActivity, "El usuario no esta registrado", Toast.LENGTH_SHORT).show()
+                    }
+       /*             val usuariosRegistados = response.body()?.map { it.email.lowercase()}
                     usuariosRegistados?.let {
-                        if(it.contains(email))
+                        if((it.contains(email)))
                             startActivity(Intent(this@LoginActivity,MainActivity::class.java))
                         else
                             Toast.makeText(this@LoginActivity, "El usuario no esta registrado", Toast.LENGTH_SHORT).show()
 
-                    }
+                    }*/
 
                 }else{
                     Toast.makeText(this@LoginActivity, "Error ${response.code()}", Toast.LENGTH_SHORT).show()
