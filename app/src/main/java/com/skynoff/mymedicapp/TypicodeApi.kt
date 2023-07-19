@@ -5,6 +5,9 @@ import retrofit2.http.GET
 
 interface TypicodeApi {
 
-    @GET("/users")
+    @GET("/posts")
+    fun getPost():Call<List<Post>>
+
+    @GET("/Users")
     fun getUsers():Call<List<User>>
 }
