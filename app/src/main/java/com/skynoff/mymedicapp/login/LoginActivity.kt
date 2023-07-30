@@ -11,29 +11,25 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.skynoff.mymedicapp.R
+import com.skynoff.mymedicapp.databinding.ActivityLoginBinding
 import com.skynoff.mymedicapp.home.MainActivity
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var viewModel: LoginViewModel
-    lateinit var etEmail: TextInputEditText
-    private lateinit var etPassword: TextInputEditText
-    lateinit var btIngresar: Button
+    private lateinit var binding : ActivityLoginBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         initViews()
         initObservables()
     }
     private fun initViews() {
         viewModel = ViewModelProvider(this)[LoginViewModel::class.java]
-        etEmail = findViewById(R.id.etUserEmail)
-        etPassword = findViewById(R.id.etUserPassword)
-        btIngresar = findViewById(R.id.button)
-
-        btIngresar.setOnClickListener {
-            val email = etEmail.text.toString().lowercase().trim()
-            val pass = etPassword.text.toString()
+        binding.button.setOnClickListener {
+             val email = binding.etUserEmail.text.toString().lowercase().trim()
+             val pass = binding.etUserPassword.text.toString()
             viewModel.loginUser(email,pass)
         }
     }
@@ -43,9 +39,8 @@ class LoginActivity : AppCompatActivity() {
             if(isLogged){
                 startActivity(Intent(this,MainActivity::class.java))
             }else{
-                Toast.makeText(this, "usuario o contraseña invalidos", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Usuario o contraseña invalidos", Toast.LENGTH_SHORT).show()
             }
         }
     }
-
 }
