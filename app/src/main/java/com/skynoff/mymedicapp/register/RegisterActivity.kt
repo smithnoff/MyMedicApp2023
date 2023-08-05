@@ -6,6 +6,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.EditText
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.skynoff.mymedicapp.R
 import com.skynoff.mymedicapp.databinding.ActivityRegisterBinding
@@ -27,7 +28,7 @@ class RegisterActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this)[RegisterViewModel::class.java]
     }
 
-    private fun initValidations() {
+    /*private fun initValidations() {
         viewModel.validateEmptys(
             binding.editTxtName.text.toString(),
             binding.editTxtNumContacto.text.toString(),
@@ -35,14 +36,29 @@ class RegisterActivity : AppCompatActivity() {
             binding.editTxtPass.text.toString(),
             binding.editTxtPassConf.text.toString()
         )
-        /*viewModel.validateFormatEmail(binding.editTxtEmail.text.toString())
-        viewModel.validateFormatPass(binding.editTxtPass.text.toString())*/
+        *//*viewModel.validateFormatEmail(binding.editTxtEmail.text.toString())
+        viewModel.validateFormatPass(binding.editTxtPass.text.toString())*//*
 
        viewModel.validationes()
-    }
+    }*/
 
     private fun initObservers() {
-        viewModel.isFormatValideEmail.observe(this) { formatValide ->
+        viewModel.name.observe(this){ name ->
+            updateRegisterButtonState()
+        }
+        viewModel.num.observe(this){ name ->
+            updateRegisterButtonState()
+        }
+        viewModel.email.observe(this){ name ->
+            updateRegisterButtonState()
+        }
+        viewModel.pass1.observe(this){ name ->
+            updateRegisterButtonState()
+        }
+        viewModel.pass2.observe(this){ name ->
+            updateRegisterButtonState()
+        }
+        /*viewModel.isFormatValideEmail.observe(this) { formatValide ->
             if (formatValide) {
                 binding.txtInputLayoutEmail.error = "Formato de correo invalido"
             } else {
@@ -73,48 +89,47 @@ class RegisterActivity : AppCompatActivity() {
                 }
             }
 
-        }
+        }*/
 
 
     }
 
-    private fun setupTextWacther(editText: EditText, afterTextChanged:(Editable) -> Unit){
-        editText.addTextChangedListener(object : TextWatcher{
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                TODO("Not yet implemented")
-            }
+    private fun createTextWatcher( onTextChange:(String) -> Unit): TextWatcher{
+       return object: TextWatcher{
+           override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+           }
 
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                TODO("Not yet implemented")
-            }
+           override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+               onTextChange(p0.toString())
+           }
 
-            override fun afterTextChanged(p0: Editable?) {
-                val variable = afterTextChanged(p0)
-            }
+           override fun afterTextChanged(p0: Editable?) {
+           }
 
-        })
+       }
     }
 
     private fun initListener(){
-        setupTextWacther(binding.editTxtName){text ->
-            //initValidations()
-        }
-        setupTextWacther(binding.editTxtNumContacto){text ->
-            initValidations()
-        }
-        setupTextWacther(binding.editTxtEmail){text ->
-            initValidations()
-            viewModel.validateFormatEmail(text.toString())
-        }
-        setupTextWacther(binding.editTxtPass){text ->
-            initValidations()
-            viewModel.validateFormatPass(text.toString())
-        }
-        setupTextWacther(binding.editTxtPassConf){text ->
-            initValidations()
-            viewModel.validateCheckPass(binding.editTxtPass.text.toString(),text.toString())
-        }
+        binding.editTxtName.addTextChangedListener(createTextWatcher { text ->
+            viewModel.name.value = text
+        })
+        binding.editTxtNumContacto.addTextChangedListener(createTextWatcher { text ->
+            viewModel.num.value = text
+        })
+        binding.editTxtEmail.addTextChangedListener(createTextWatcher { text ->
+            viewModel.email.value = text
+        })
+        binding.editTxtPass.addTextChangedListener(createTextWatcher { text ->
+            viewModel.pass1.value = text
+        })
+        binding.editTxtPassConf.addTextChangedListener(createTextWatcher { text ->
+            viewModel.pass2.value = text
+        })
 
+    }
+
+    private fun updateRegisterButtonState(){
+        binding.btnRegister.isEnabled = viewModel.isDataValid()
     }
 
 }
