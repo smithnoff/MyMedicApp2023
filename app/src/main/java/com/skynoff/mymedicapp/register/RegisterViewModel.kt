@@ -1,7 +1,6 @@
 package com.skynoff.mymedicapp.register
 
 import androidx.core.util.PatternsCompat
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import java.util.regex.Pattern
@@ -15,7 +14,7 @@ class RegisterViewModel : ViewModel() {
     var pass2 = MutableLiveData<String>()
 
     var hasError = MutableLiveData(false)
-    var isEmptys = MutableLiveData(true)
+    var isEmptys = MutableLiveData(false)
     var isFormatValideEmail = MutableLiveData(false)
     var isFormatValidePass = MutableLiveData(false)
     var isCheckPass = MutableLiveData(false)
@@ -34,15 +33,33 @@ class RegisterViewModel : ViewModel() {
     }
 
     fun validateFormatEmail(email: String): Boolean {
-        return PatternsCompat.EMAIL_ADDRESS.matcher(email).matches()
+        return if (PatternsCompat.EMAIL_ADDRESS.matcher(email).matches()) {
+            isFormatValideEmail.postValue(true)
+            true
+        }else{
+            isFormatValideEmail.postValue(false)
+            false
+        }
     }
 
     fun validateFormatPass(password: String): Boolean {
         val formatPass = Pattern.compile("^(?=.*[A-Z]).{8,}\$")
-       return formatPass.matcher(password).matches()
+       return if (formatPass.matcher(password).matches()) {
+           isFormatValidePass.postValue(true)
+           true
+       }else{
+           isFormatValidePass.postValue(false)
+           false
+       }
     }
 
     fun validateCheckPass(password1: String, password2: String):Boolean {
-      return  password1 == password2
+      return if (password1 == password2) {
+          isCheckPass.postValue(true)
+          true
+      }else{
+          isCheckPass.postValue(false)
+          false
+      }
     }
 }

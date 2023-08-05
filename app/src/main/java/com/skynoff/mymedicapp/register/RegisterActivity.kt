@@ -28,20 +28,6 @@ class RegisterActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this)[RegisterViewModel::class.java]
     }
 
-    /*private fun initValidations() {
-        viewModel.validateEmptys(
-            binding.editTxtName.text.toString(),
-            binding.editTxtNumContacto.text.toString(),
-            binding.editTxtEmail.text.toString(),
-            binding.editTxtPass.text.toString(),
-            binding.editTxtPassConf.text.toString()
-        )
-        *//*viewModel.validateFormatEmail(binding.editTxtEmail.text.toString())
-        viewModel.validateFormatPass(binding.editTxtPass.text.toString())*//*
-
-       viewModel.validationes()
-    }*/
-
     private fun initObservers() {
         viewModel.name.observe(this){ name ->
             updateRegisterButtonState()
@@ -51,6 +37,7 @@ class RegisterActivity : AppCompatActivity() {
         }
         viewModel.email.observe(this){ name ->
             updateRegisterButtonState()
+
         }
         viewModel.pass1.observe(this){ name ->
             updateRegisterButtonState()
@@ -58,38 +45,32 @@ class RegisterActivity : AppCompatActivity() {
         viewModel.pass2.observe(this){ name ->
             updateRegisterButtonState()
         }
-        /*viewModel.isFormatValideEmail.observe(this) { formatValide ->
-            if (formatValide) {
+
+        viewModel.isFormatValideEmail.observe(this){format ->
+            if (!format && binding.editTxtEmail.text.toString().isNotEmpty()){
                 binding.txtInputLayoutEmail.error = "Formato de correo invalido"
             } else {
                 binding.txtInputLayoutEmail.error = null
             }
         }
 
-        viewModel.isEmptys.observe(this){isEmptys ->
-            if (!isEmptys){
-                viewModel.isFormatValidePass.observe(this) { formatValide ->
-                    if (!formatValide) {
-                        binding.txtInputLayoutPass.error =
-                            "Tu contraseña debe ser alfanúmerica tener al menos 1 letra mayúscula"
-                    } else {
-                        binding.txtInputLayoutPass.error = null
-                    }
-
-                }
-                viewModel.isCheckPass.observe(this) { checkPass ->
-                    if (checkPass) {
-                        binding.txtInputLayoutPassConf.error = null
-                    } else {
-                        binding.txtInputLayoutPassConf.error = "Contraseñas no coinciden"
-                    }
-                }
-                viewModel.hasError.observe(this) { hasError ->
-                    binding.btnRegister.isEnabled = hasError
-                }
+        viewModel.isFormatValidePass.observe(this) { formatValide ->
+            if (!formatValide && binding.editTxtPass.text.toString().isNotEmpty()) {
+                binding.txtInputLayoutPass.error =
+                    "Tu contraseña debe ser alfanúmerica tener al menos 1 letra mayúscula"
+            } else {
+                binding.txtInputLayoutPass.error = null
             }
 
-        }*/
+        }
+
+        viewModel.isCheckPass.observe(this) { checkPass ->
+            if (!checkPass && binding.editTxtPassConf.text.toString().isNotEmpty()) {
+                binding.txtInputLayoutPassConf.error = "Contraseñas no coinciden"
+            } else {
+                binding.txtInputLayoutPassConf.error = null
+            }
+        }
 
 
     }
