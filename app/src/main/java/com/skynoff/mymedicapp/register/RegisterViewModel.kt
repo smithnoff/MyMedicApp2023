@@ -3,6 +3,9 @@ package com.skynoff.mymedicapp.register
 import androidx.core.util.PatternsCompat
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import java.util.regex.Pattern
 
 class RegisterViewModel : ViewModel() {
@@ -13,11 +16,12 @@ class RegisterViewModel : ViewModel() {
     var pass1 = MutableLiveData<String>()
     var pass2 = MutableLiveData<String>()
 
-    var hasError = MutableLiveData(false)
-    var isEmptys = MutableLiveData(false)
     var isFormatValideEmail = MutableLiveData(false)
     var isFormatValidePass = MutableLiveData(false)
     var isCheckPass = MutableLiveData(false)
+
+    private val auth: FirebaseAuth = Firebase.auth
+    val isUserRegister = MutableLiveData<Boolean>()
 
     fun isDataValid():Boolean{
         var valideEmptys =  validateEmptys(name.value.toString(),num.value.toString(),email.value.toString(),pass1.value.toString(),pass2.value.toString())
@@ -61,5 +65,13 @@ class RegisterViewModel : ViewModel() {
           isCheckPass.postValue(false)
           false
       }
+    }
+    fun registerUser(name: String,number: String,email: String,password: String){
+        auth.createUserWithEmailAndPassword(email,password)
+            .addOnCompleteListener {task ->
+                if (task.isSuccessful){
+                    isUserRegister.postValue(true)
+                }
+            }
     }
 }

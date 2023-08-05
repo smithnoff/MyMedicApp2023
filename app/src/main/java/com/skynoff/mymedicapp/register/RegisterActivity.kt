@@ -6,6 +6,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.EditText
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.skynoff.mymedicapp.R
@@ -61,7 +62,6 @@ class RegisterActivity : AppCompatActivity() {
             } else {
                 binding.txtInputLayoutPass.error = null
             }
-
         }
 
         viewModel.isCheckPass.observe(this) { checkPass ->
@@ -72,6 +72,12 @@ class RegisterActivity : AppCompatActivity() {
             }
         }
 
+        viewModel.isUserRegister.observe(this){result ->
+            if (result){
+                Toast.makeText(this,"Usuario agregado exitosamente", Toast.LENGTH_SHORT).show()
+                binding.btnRegister.isEnabled=false
+            }
+        }
 
     }
 
@@ -106,6 +112,13 @@ class RegisterActivity : AppCompatActivity() {
         binding.editTxtPassConf.addTextChangedListener(createTextWatcher { text ->
             viewModel.pass2.value = text
         })
+
+        binding.btnRegister.setOnClickListener {
+            viewModel.registerUser(binding.editTxtName.text.toString(),
+                binding.editTxtNumContacto.text.toString(),
+                binding.editTxtEmail.text.toString(),
+                binding.editTxtPassConf.text.toString())
+        }
 
     }
 
