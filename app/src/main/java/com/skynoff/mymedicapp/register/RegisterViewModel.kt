@@ -67,11 +67,12 @@ class RegisterViewModel : ViewModel() {
       }
     }
     fun registerUser(name: String,number: String,email: String,password: String){
-        auth.createUserWithEmailAndPassword(email,password)
+        isUserRegister.postValue(true)
+       /* auth.createUserWithEmailAndPassword(email,password)
             .addOnCompleteListener {task ->
                 if (task.isSuccessful){
                     isUserRegister.postValue(true)
                 }
-            }
+            }*/
     }
 }

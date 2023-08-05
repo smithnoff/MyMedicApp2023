@@ -8,6 +8,7 @@
     tools:context=".register.RegisterActivity"
     android:layout_margin="20dp"
     android:orientation="vertical"
+    android:background="@color/white"
     >
 
     <com.google.android.material.textfield.TextInputLayout

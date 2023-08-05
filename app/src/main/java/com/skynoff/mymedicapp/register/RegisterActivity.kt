@@ -1,7 +1,9 @@
 package com.skynoff.mymedicapp.register
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
@@ -11,9 +13,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.skynoff.mymedicapp.R
 import com.skynoff.mymedicapp.databinding.ActivityRegisterBinding
+import com.skynoff.mymedicapp.databinding.ActivityRegisterSuccesBinding
+import com.skynoff.mymedicapp.login.LoginActivity
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
+    private lateinit var succesBinding: ActivityRegisterSuccesBinding
     private lateinit var viewModel: RegisterViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,7 +54,7 @@ class RegisterActivity : AppCompatActivity() {
 
         viewModel.isFormatValideEmail.observe(this){format ->
             if (!format && binding.editTxtEmail.text.toString().isNotEmpty()){
-                binding.txtInputLayoutEmail.error = "Formato de correo invalido"
+                binding.txtInputLayoutEmail.error = getString(R.string.format_email_incorrect)
             } else {
                 binding.txtInputLayoutEmail.error = null
             }
@@ -58,7 +63,7 @@ class RegisterActivity : AppCompatActivity() {
         viewModel.isFormatValidePass.observe(this) { formatValide ->
             if (!formatValide && binding.editTxtPass.text.toString().isNotEmpty()) {
                 binding.txtInputLayoutPass.error =
-                    "Tu contraseña debe ser alfanúmerica tener al menos 1 letra mayúscula"
+                    getString(R.string.format_pass_incorrect)
             } else {
                 binding.txtInputLayoutPass.error = null
             }
@@ -66,7 +71,7 @@ class RegisterActivity : AppCompatActivity() {
 
         viewModel.isCheckPass.observe(this) { checkPass ->
             if (!checkPass && binding.editTxtPassConf.text.toString().isNotEmpty()) {
-                binding.txtInputLayoutPassConf.error = "Contraseñas no coinciden"
+                binding.txtInputLayoutPassConf.error = getString(R.string.pass_invalide)
             } else {
                 binding.txtInputLayoutPassConf.error = null
             }
@@ -74,8 +79,17 @@ class RegisterActivity : AppCompatActivity() {
 
         viewModel.isUserRegister.observe(this){result ->
             if (result){
-                Toast.makeText(this,"Usuario agregado exitosamente", Toast.LENGTH_SHORT).show()
-                binding.btnRegister.isEnabled=false
+                Handler().postDelayed({
+                    succesBinding = ActivityRegisterSuccesBinding.inflate(layoutInflater)
+                    val successView = succesBinding.root
+                    successView.layoutParams = binding.root.layoutParams
+                    addContentView(successView,successView.layoutParams)
+                    Handler().postDelayed({
+                        val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    },3000)
+                },0)
             }
         }
 
