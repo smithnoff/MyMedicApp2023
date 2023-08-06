@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">MyMedicApp</string>
+    <string name="user_name">Nombre</string>
+    <string name="user_email">Correo electrónico</string>
+    <string name="user_password">Contraseña</string>
+    <string name="confir_password">Confirmar contraseña</string>
+    <string name="user_phone">Número de contacto</string>
+    <string name="registerhello">Hola! Vamos a crear tu \n cuenta</string>
+    <string name="registerimage">register icon</string>
+    <string name="registrate">Registrate</string>
+
+
 </resources>

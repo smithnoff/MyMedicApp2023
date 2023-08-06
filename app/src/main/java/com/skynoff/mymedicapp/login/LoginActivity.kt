@@ -3,16 +3,10 @@ package com.skynoff.mymedicapp.login
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import com.google.android.material.textfield.TextInputEditText
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
-import com.skynoff.mymedicapp.R
+import com.skynoff.mymedicapp.Register.RegisterActivity
 import com.skynoff.mymedicapp.databinding.ActivityLoginBinding
-import com.skynoff.mymedicapp.home.MainActivity
 
 class LoginActivity : AppCompatActivity() {
 
@@ -37,7 +31,7 @@ class LoginActivity : AppCompatActivity() {
 
         viewModel.isUserLogged.observe(this){ isLogged ->
             if(isLogged){
-                startActivity(Intent(this,MainActivity::class.java))
+                startActivity(Intent(this, RegisterActivity::class.java))
             }else{
                 Toast.makeText(this, "Usuario o contraseña invalidos", Toast.LENGTH_SHORT).show()
             }
