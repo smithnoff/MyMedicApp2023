@@ -4,16 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Register.RegisterActivity">
+    tools:context=".signup.RegisterActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:background="@color/white2"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
@@ -23,9 +21,10 @@
 
 
         <ImageButton
+            android:id="@+id/btBack"
             android:layout_width="19dp"
-            android:layout_height="16dp"
-            android:layout_marginStart="16dp"
+            android:layout_height="10dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="19dp"
             app:srcCompat="@drawable/atrasicon">
 
@@ -38,28 +37,25 @@
             android:layout_marginTop="10dp"
             android:text="@string/registerhello"
             android:textAlignment="center"
-            android:textSize="22sp"
-            android:textStyle="bold">
-        </TextView>
+            android:textSize="20sp"
+            android:textStyle="bold"></TextView>
 
         <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            app:srcCompat="@drawable/imageperfil"
-            android:contentDescription="@string/registerimage"/>
+            android:contentDescription="@string/registerimage"
+            app:srcCompat="@drawable/imageperfil" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="47dp"
-        android:layout_marginEnd="47dp"
-        android:layout_marginBottom="110dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         android:background="@color/white2"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/btnregistro"
@@ -70,23 +66,20 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/etname"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/user_name"
-                android:textColorHint="@color/gray"
-                app:boxStrokeColor="@color/gray"
-                app:placeholderTextColor="@color/gray"
-                android:ems="10">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/user_name"
+            android:textColorHint="@color/gray"
+            app:boxStrokeColor="@color/gray"
+            app:placeholderTextColor="@color/gray">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etUserName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/profileicon"
-                android:drawablePadding="10dp"
                 android:inputType="text"
-                android:textSize="14sp"/>
+                android:textSize="14sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -98,14 +91,13 @@
             android:textColorHint="@color/gray"
             app:boxStrokeColor="@color/gray"
             app:placeholderTextColor="@color/gray">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etUserPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/phoneicon"
-                android:ems="10"
                 android:hint="@string/user_phone"
-                android:drawablePadding="10dp"
                 android:inputType="phone"
                 android:maxLength="11"
                 android:textColorHint="@color/gray"
@@ -127,9 +119,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/correoicon"
-                android:ems="10"
                 android:hint="@string/user_email"
-                android:drawablePadding="7dp"
                 android:inputType="textEmailAddress"
                 android:textColorHint="@color/gray"
                 android:textSize="14sp" />
@@ -150,9 +140,7 @@
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/lockimage"
                 android:drawableEnd="@drawable/visibilityoff"
-                android:ems="10"
                 android:hint="@string/user_password"
-                android:drawablePadding="8dp"
                 android:inputType="textPassword"
                 android:maxLength="8"
                 android:textColorHint="@color/gray"
@@ -166,14 +154,13 @@
             android:textColorHint="@color/gray"
             app:boxStrokeColor="@color/gray"
             app:placeholderTextColor="@color/gray">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etConfirPass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/lockimage"
-                android:drawablePadding="8dp"
                 android:drawableEnd="@drawable/visibilityoff"
-                android:ems="10"
                 android:hint="@string/confir_password"
                 android:maxLength="8"
                 android:textColorHint="@color/gray"
@@ -185,17 +172,17 @@
 
     <Button
         android:id="@+id/btnregistro"
-        android:layout_width="309dp"
-        android:layout_height="54dp"
-        android:layout_marginBottom="60dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/ovalo"
         android:drawableStart="@color/gray"
-        android:text="@string/registrate"
         android:enabled="false"
+        android:text="@string/registrate"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout2"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout2" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

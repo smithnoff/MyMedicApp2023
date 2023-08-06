@@ -1,4 +1,4 @@
-package com.skynoff.mymedicapp.Register
+package com.skynoff.mymedicapp.signup
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

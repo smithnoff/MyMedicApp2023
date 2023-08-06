@@ -1,5 +1,6 @@
 package com.skynoff.mymedicapp
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
@@ -10,7 +11,7 @@ class CustomDialogActivity : AppCompatActivity() {
         setContentView(R.layout.activity_custom_dialog)
 
 
-        class CustomDialog(context: this) : AlertDialog.Builder(context) {
+        class CustomDialog(context: Context) : AlertDialog.Builder(context) {
 
             fun show(title: String, message: String) {
 

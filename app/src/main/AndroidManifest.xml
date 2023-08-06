@@ -18,13 +18,13 @@
             android:name=".CustomDialogActivity"
             android:exported="false" />
         <activity
-            android:name=".Register.CustomAlertActivity"
+            android:name=".register.CustomAlertActivity"
             android:exported="false" />
         <activity
             android:name=".RegistroActivity"
             android:exported="false" />
         <activity
-            android:name=".Register.RegisterActivity"
+            android:name=".signup.RegisterActivity"
             android:exported="false" />
         <activity
             android:name=".login.LoginActivity"

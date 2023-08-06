@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import com.skynoff.mymedicapp.Register.RegisterActivity
+import com.skynoff.mymedicapp.signup.RegisterActivity
 import com.skynoff.mymedicapp.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
@@ -26,12 +26,14 @@ class LoginActivity : AppCompatActivity() {
              val pass = binding.etUserPassword.text.toString()
             viewModel.loginUser(email,pass)
         }
+        binding.tvRegister.setOnClickListener {
+            startActivity(Intent(this, RegisterActivity::class.java))
+        }
     }
     private fun initObservables() {
 
         viewModel.isUserLogged.observe(this){ isLogged ->
             if(isLogged){
-                startActivity(Intent(this, RegisterActivity::class.java))
             }else{
                 Toast.makeText(this, "Usuario o contraseña invalidos", Toast.LENGTH_SHORT).show()
             }
