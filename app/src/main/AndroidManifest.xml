@@ -17,16 +17,22 @@
         <activity
             android:name=".splash.SplashActivity"
             android:exported="true" >
-            <intent-filter>
+          
+           <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+              </activity>
+
+       <activity
+            android:name=".register.RegisterActivity"
+            android:exported="false">
         </activity>
+
         <activity
             android:name=".login.LoginActivity"
-            android:exported="true">
-
+            android:exported="false">   
         </activity>
         <activity
             android:name=".home.MainActivity"
