@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MyMedicApp</string>
+    <string name="register_success">Tu cuenta ha sido creada con éxito !</string>
+    <string name="format_email_incorrect">Formato de correo invalido</string>
+    <string name="format_pass_incorrect">Tu contraseña debe ser alfanúmerica tener al menos 1 letra mayúscula</string>
+    <string name="pass_invalide">Contraseñas no coinciden</string>
 </resources>
