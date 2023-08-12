@@ -38,7 +38,9 @@
             android:text="@string/registerhello"
             android:textAlignment="center"
             android:textSize="20sp"
-            android:textStyle="bold"></TextView>
+            android:textStyle="bold">
+
+        </TextView>
 
         <ImageView
             android:id="@+id/imageView2"

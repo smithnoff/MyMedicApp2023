@@ -5,8 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import com.skynoff.mymedicapp.signup.RegisterActivity
 import com.skynoff.mymedicapp.databinding.ActivityLoginBinding
+import com.skynoff.mymedicapp.signup.RegisterActivity
 
 class LoginActivity : AppCompatActivity() {
 
