@@ -4,4 +4,7 @@
     <string name="format_email_incorrect">Formato de correo invalido</string>
     <string name="format_pass_incorrect">Tu contraseña debe ser alfanúmerica tener al menos 1 letra mayúscula</string>
     <string name="pass_invalide">Contraseñas no coinciden</string>
+    <string name="saltar">Saltar</string>
+    <string name="generar_citas">GENERAR CITAS</string>
+    <string name="citas">Realizar citas medicas \n con fecha y hora a tu elección</string>
 </resources>
