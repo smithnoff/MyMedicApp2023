@@ -1,6 +1,7 @@
 package com.skynoff.mymedicapp.signup
 
 import android.content.Intent
+import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -18,6 +19,9 @@ class RegisterViewModel : ViewModel() {
             isUserRegister.postValue(task.isSuccessful)
         }
 
+
+    }
+    fun mostrar (view:View){
 
     }
 }

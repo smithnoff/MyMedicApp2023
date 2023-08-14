@@ -4,8 +4,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.ViewModelProvider
+import com.skynoff.mymedicapp.databinding.ActivityCustomDialogBinding
 import com.skynoff.mymedicapp.databinding.ActivityRegisterBinding
 import com.skynoff.mymedicapp.login.LoginActivity
 
@@ -65,13 +67,23 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         private fun initObservables() {
+            val view: ActivityCustomDialogBinding =
+                ActivityCustomDialogBinding.inflate(layoutInflater)
+            setContentView(view.root)
 
             viewModel.isUserRegister.observe(this) { isRegister ->
                 if (isRegister) {
-                    startActivity(Intent(this, LoginActivity::class.java))
+                    AlertDialog.Builder(this)
+                        .setView(view.root)
+                        .setCancelable(true)
+                        .setOnCancelListener {
+                            finish()
+                        }
+                        .create().show()
                 } else {
                     Toast.makeText(this, "Registro Fallido", Toast.LENGTH_SHORT).show()
                 }
             }
+
         }
-    }
+}
