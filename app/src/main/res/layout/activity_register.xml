@@ -178,7 +178,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:background="@drawable/ovalo"
-        android:drawableStart="@color/gray"
+        android:backgroundTint="@color/blue2"
         android:enabled="false"
         android:text="@string/registrate"
         android:textColor="@color/white"
