@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import com.skynoff.mymedicapp.R
 import com.skynoff.mymedicapp.home.MainActivity
+import com.skynoff.mymedicapp.login.LoginActivity
 
 class SplashActivity : AppCompatActivity() {
 
@@ -13,7 +14,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         Handler().postDelayed({
-                              startActivity(Intent(this,MainActivity::class.java))
+                              startActivity(Intent(this,LoginActivity::class.java))
         },2000)
     }
 }
