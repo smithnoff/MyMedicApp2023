@@ -102,7 +102,6 @@ class RegisterActivity : AppCompatActivity() {
 
            override fun afterTextChanged(p0: Editable?) {
            }
-
        }
     }
 
@@ -129,11 +128,9 @@ class RegisterActivity : AppCompatActivity() {
                 binding.editTxtEmail.text.toString(),
                 binding.editTxtPassConf.text.toString())
         }
-
     }
 
     private fun updateRegisterButtonState(){
         binding.btnRegister.isEnabled = viewModel.isDataValid()
     }
-
 }

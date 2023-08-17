@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.skynoff.mymedicapp.R
 import com.skynoff.mymedicapp.joined.Joined_Activity
+import com.skynoff.mymedicapp.register.RegisterActivity
 import com.skynoff.mymedicapp.register.register
 
 class LoginActivity : AppCompatActivity() {
@@ -66,7 +67,7 @@ spannableString.setSpan(clickableSpan, linkStartIndex, linkEndIndex, Spanned.SPA
 
 
         linkTextView.setOnClickListener{
-            val intent = Intent(this, register::class.java)
+            val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
     }
