@@ -11,7 +11,9 @@ import com.skynoff.mymedicapp.R
 import com.skynoff.mymedicapp.databinding.ActivityRegisterBinding
 import com.skynoff.mymedicapp.databinding.ActivityRegisterSuccesBinding
 import com.skynoff.mymedicapp.login.LoginActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
     private lateinit var succesBinding: ActivityRegisterSuccesBinding
