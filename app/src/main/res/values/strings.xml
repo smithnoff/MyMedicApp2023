@@ -4,4 +4,8 @@
     <string name="format_email_incorrect">Formato de correo invalido</string>
     <string name="format_pass_incorrect">Tu contraseña debe ser alfanúmerica tener al menos 1 letra mayúscula</string>
     <string name="pass_invalide">Contraseñas no coinciden</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>
