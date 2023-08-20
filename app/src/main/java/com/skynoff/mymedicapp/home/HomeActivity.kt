@@ -7,6 +7,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.skynoff.mymedicapp.R
 import com.skynoff.mymedicapp.databinding.ActivityHomeBinding
 
 class HomeActivity : AppCompatActivity() {

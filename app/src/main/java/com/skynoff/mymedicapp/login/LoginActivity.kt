@@ -12,9 +12,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.skynoff.mymedicapp.R
-import com.skynoff.mymedicapp.joined.Joined_Activity
+import com.skynoff.mymedicapp.home.HomeActivity
 import com.skynoff.mymedicapp.register.RegisterActivity
-import com.skynoff.mymedicapp.register.register
 
 class LoginActivity : AppCompatActivity() {
 
@@ -74,7 +73,7 @@ spannableString.setSpan(clickableSpan, linkStartIndex, linkEndIndex, Spanned.SPA
 
 
     private fun validateUser(Email: String, pass: String) {
-        val intent = Intent(this, Joined_Activity::class.java)
+        val intent = Intent(this, HomeActivity::class.java)
         startActivity(intent)
     }
     private fun isValidPassword(password: String): Boolean {

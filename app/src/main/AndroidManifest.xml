@@ -15,6 +15,7 @@
         android:theme="@style/Theme.MyMedicApp"
         tools:targetApi="31">
         <activity
+            android:theme="@style/Base.Theme.MyMedicAppAction"
             android:name=".home.HomeActivity"
             android:exported="false"
             android:label="@string/title_activity_home" />
