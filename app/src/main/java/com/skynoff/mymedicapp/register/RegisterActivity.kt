@@ -11,7 +11,9 @@ import com.skynoff.mymedicapp.R
 import com.skynoff.mymedicapp.databinding.ActivityRegisterBinding
 import com.skynoff.mymedicapp.databinding.ActivityRegisterSuccesBinding
 import com.skynoff.mymedicapp.login.LoginActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
     private lateinit var succesBinding: ActivityRegisterSuccesBinding
@@ -49,7 +51,7 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         viewModel.isFormatValideEmail.observe(this){format ->
-            if (!format && binding.editTxtEmail.text.toString().isNotEmpty()){
+            if (!format && binding.etUserEmail.text.toString().isNotEmpty()){
                 binding.txtInputLayoutEmail.error = getString(R.string.format_email_incorrect)
             } else {
                 binding.txtInputLayoutEmail.error = null
@@ -57,7 +59,7 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         viewModel.isFormatValidePass.observe(this) { formatValide ->
-            if (!formatValide && binding.editTxtPass.text.toString().isNotEmpty()) {
+            if (!formatValide && binding.etUserPassword.text.toString().isNotEmpty()) {
                 binding.txtInputLayoutPass.error =
                     getString(R.string.format_pass_incorrect)
             } else {
@@ -66,10 +68,10 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         viewModel.isCheckPass.observe(this) { checkPass ->
-            if (!checkPass && binding.editTxtPassConf.text.toString().isNotEmpty()) {
-                binding.txtInputLayoutPassConf.error = getString(R.string.pass_invalide)
+            if (!checkPass && binding.etConfirPass.text.toString().isNotEmpty()) {
+                binding.editTextTextPassword3.error = getString(R.string.pass_invalide)
             } else {
-                binding.txtInputLayoutPassConf.error = null
+                binding.editTextTextPassword3.error = null
             }
         }
 
@@ -106,31 +108,33 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun initListener(){
-        binding.editTxtName.addTextChangedListener(createTextWatcher { text ->
-            viewModel.name.value = text
-        })
-        binding.editTxtNumContacto.addTextChangedListener(createTextWatcher { text ->
-            viewModel.num.value = text
-        })
-        binding.editTxtEmail.addTextChangedListener(createTextWatcher { text ->
-            viewModel.email.value = text
-        })
-        binding.editTxtPass.addTextChangedListener(createTextWatcher { text ->
-            viewModel.pass1.value = text
-        })
-        binding.editTxtPassConf.addTextChangedListener(createTextWatcher { text ->
-            viewModel.pass2.value = text
-        })
+        with(binding){
+            etUserName.addTextChangedListener(createTextWatcher { text ->
+                viewModel.name.value = text
+            })
+            etUserPhone.addTextChangedListener(createTextWatcher { text ->
+                viewModel.num.value = text
+            })
+            etUserEmail.addTextChangedListener(createTextWatcher { text ->
+                viewModel.email.value = text
+            })
+            etUserPassword.addTextChangedListener(createTextWatcher { text ->
+                viewModel.pass1.value = text
+            })
+            etConfirPass.addTextChangedListener(createTextWatcher { text ->
+                viewModel.pass2.value = text
+            })
 
-        binding.btnRegister.setOnClickListener {
-            viewModel.registerUser(binding.editTxtName.text.toString(),
-                binding.editTxtNumContacto.text.toString(),
-                binding.editTxtEmail.text.toString(),
-                binding.editTxtPassConf.text.toString())
+            btnregistro.setOnClickListener {
+                viewModel.registerUser(binding.etUserName.text.toString(),
+                    binding.etUserPhone.text.toString(),
+                    binding.etUserEmail.text.toString(),
+                    binding.etUserPassword.text.toString())
+            }
         }
     }
 
     private fun updateRegisterButtonState(){
-        binding.btnRegister.isEnabled = viewModel.isDataValid()
+        binding.btnregistro.isEnabled = viewModel.isDataValid()
     }
 }
