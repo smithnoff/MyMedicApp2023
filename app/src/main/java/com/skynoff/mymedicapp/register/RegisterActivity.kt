@@ -109,29 +109,30 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun initListener(){
-        binding.etUserName.addTextChangedListener(createTextWatcher { text ->
-            viewModel.name.value = text
-        })
-        binding.etUserPhone.addTextChangedListener(createTextWatcher { text ->
-            viewModel.num.value = text
-        })
-        binding.etUserEmail.addTextChangedListener(createTextWatcher { text ->
-            viewModel.email.value = text
-        })
-        binding.etUserPassword.addTextChangedListener(createTextWatcher { text ->
-            viewModel.pass1.value = text
-        })
-        binding.etConfirPass.addTextChangedListener(createTextWatcher { text ->
-            viewModel.pass2.value = text
-        })
+        with(binding){
+            etUserName.addTextChangedListener(createTextWatcher { text ->
+                viewModel.name.value = text
+            })
+            etUserPhone.addTextChangedListener(createTextWatcher { text ->
+                viewModel.num.value = text
+            })
+            etUserEmail.addTextChangedListener(createTextWatcher { text ->
+                viewModel.email.value = text
+            })
+            etUserPassword.addTextChangedListener(createTextWatcher { text ->
+                viewModel.pass1.value = text
+            })
+            etConfirPass.addTextChangedListener(createTextWatcher { text ->
+                viewModel.pass2.value = text
+            })
 
-        binding.btnregistro.setOnClickListener {
-            viewModel.registerUser(binding.etUserName.text.toString(),
-                binding.etUserPhone.text.toString(),
-                binding.etUserEmail.text.toString(),
-                binding.etUserPassword.text.toString())
+            btnregistro.setOnClickListener {
+                viewModel.registerUser(binding.etUserName.text.toString(),
+                    binding.etUserPhone.text.toString(),
+                    binding.etUserEmail.text.toString(),
+                    binding.etUserPassword.text.toString())
+            }
         }
-
     }
 
     private fun updateRegisterButtonState(){
