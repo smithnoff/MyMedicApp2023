@@ -104,7 +104,6 @@ class RegisterActivity : AppCompatActivity() {
 
            override fun afterTextChanged(p0: Editable?) {
            }
-
        }
     }
 
@@ -138,5 +137,4 @@ class RegisterActivity : AppCompatActivity() {
     private fun updateRegisterButtonState(){
         binding.btnregistro.isEnabled = viewModel.isDataValid()
     }
-
 }
