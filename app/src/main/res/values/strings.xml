@@ -4,4 +4,13 @@
     <string name="format_email_incorrect">Formato de correo invalido</string>
     <string name="format_pass_incorrect">Tu contraseña debe ser alfanúmerica tener al menos 1 letra mayúscula</string>
     <string name="pass_invalide">Contraseñas no coinciden</string>
+    <string name="registerhello">Hola! Vamos a crear tu \ncuenta</string>
+    <string name="user_name"> Nombre</string>
+    <string name="registerimage" />
+    <string name="user_phone"> Número de contacto</string>
+    <string name="user_email"> Correo electrónico</string>
+    <string name="user_password"> Contraseña</string>
+    <string name="confir_password"> Confirmar contraseña</string>
+    <string name="registrate">Registrate</string>
+
 </resources>
